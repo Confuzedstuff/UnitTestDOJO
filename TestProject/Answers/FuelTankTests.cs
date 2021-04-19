@@ -42,7 +42,7 @@ namespace TestProject
         {
             var fuelTankService = autoMoqer.Create<FuelTankAssemblyService>();
             var fuelTank = fuelTankService.CreateFuelTank(FuelType.Oxygen, 100);
-            Assert.Throws<FuelTankRuptured>(() => fuelTank.Fill(FuelType.Oxygen, 150));
+            Assert.Throws<FuelTankRuptured>(() => fuelTank.AddFuel(FuelType.Oxygen, 150));
         }
 
         [Test]

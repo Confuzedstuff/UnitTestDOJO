@@ -23,7 +23,9 @@ namespace TestProject
         [Test]
         public void Assert_Refueler_Does_Not_Overfill()
         {
-            //Fuel tanks explode
+            var refuler = autoMoqer.Resolve<RefuelerService>();
+            var fuelTank = new FuelTank(FuelType.Oxygen, 3);
+            Assert.Throws<PreventOverfillException>(()=>refuler.AddFuel(fuelTank, FuelType.Oxygen, 5));
         }
 
         [Test]
@@ -39,7 +41,7 @@ namespace TestProject
             
             var fuelTankService = autoMoqer.Create<FuelTankAssemblyService>();
             var fuelTank = fuelTankService.CreateFuelTank(FuelType.Oxygen, 100);
-            Assert.Throws<Exception>(() => fuelTank.Fill(FuelType.Oxygen, 150));
+            Assert.Throws<Exception>(() => fuelTank.AddFuel(FuelType.Oxygen, 150));
         }
 
         [Test]

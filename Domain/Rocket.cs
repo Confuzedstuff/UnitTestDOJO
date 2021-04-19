@@ -34,6 +34,7 @@ namespace Domain
                 throw new NoEngineInstalled();
             }
 
+            this.Engine.OpenFuelValves();
             this.Engine.IgniteEngine(this.FuelTanks);
         }
     }

@@ -23,6 +23,7 @@ namespace TestProject
         {
             var someServiceMock = autoMoqer.Resolve<SomeService>();
             var someDependencyServiceMock = autoMoqer.GetMock<ISomeDependencyService>();
+
             someServiceMock.SomeMethod(It.IsAny<int>());
             
             // sometimes 

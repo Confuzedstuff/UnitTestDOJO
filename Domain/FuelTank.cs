@@ -13,52 +13,54 @@ namespace Domain
 
         public FuelType FuelType { get; }
         public int MaxVolume { get; }
-        public int Amount { get; private set; }
+        public int CurrentFuelVolume { get; private set; }
 
-        public void Fill(FuelType fuelType, int amount)
+        public void AddFuel(FuelType fuelType, int amount)
         {
-            CheckDoNotMixFuelAndOxidizer(fuelType);
-            this.Amount += amount;
+            CheckDoNotMixDifferentFuels(fuelType);
+            this.CurrentFuelVolume += amount;
             CheckFuelTankRuptured();
         }
 
         private void CheckFuelTankRuptured()
         {
-            if (this.Amount > this.MaxVolume)
+            if (this.CurrentFuelVolume > this.MaxVolume)
             {
                 throw new FuelTankRuptured();
             }
         }
 
-        private void CheckDoNotMixFuelAndOxidizer(FuelType fuelType)
+        private void CheckDoNotMixDifferentFuels(FuelType fuelType)
         {
             if (fuelType != this.FuelType)
             {
-                throw new Exception("Do not mix fuel with oxidizer");
+                throw new Exception("Explosion! Do not mix different fuels");
             }
         }
 
-        public int SupplyFuel(int amountToSupply)
+        public int RemoveFuel(int amountToRemove)
         {
-            if (this.Amount <= 0)
+            if (this.CurrentFuelVolume <= 0)
             {
                 return 0;
             }
 
-            if (amountToSupply <= this.Amount)
+            if (amountToRemove <= this.CurrentFuelVolume)
             {
-                this.Amount -= amountToSupply;
-                return amountToSupply;
+                this.CurrentFuelVolume -= amountToRemove;
+                return amountToRemove;
             }
 
-            var lastBitOfFuel = this.Amount;
-            this.Amount = 0;
+            var lastBitOfFuel = this.CurrentFuelVolume;
+            this.CurrentFuelVolume = 0;
             return lastBitOfFuel;
         }
 
-        public override string ToString()
+        public int RemoveAllFuel()
         {
-            return $"Fueltank: {FuelType} {Amount}L";
+            return this.RemoveFuel(this.CurrentFuelVolume);
         }
+
+        public override string ToString() => $"Fueltank: {FuelType} {CurrentFuelVolume}L";
     }
 }

@@ -15,12 +15,12 @@ namespace Services
         {
             AssertEnsureFuelTypeIsTheSame(fuelTank, fuelType);
             AssertIfFuelTankWillRupture(fuelTank, amountToAdd);
-            fuelTank.Fill(fuelType, amountToAdd);
+            fuelTank.AddFuel(fuelType, amountToAdd);
         }
 
         private void AssertIfFuelTankWillRupture(FuelTank fuelTank, int amountToAdd)
         {
-            var predictedTotal = fuelTank.Amount + amountToAdd;
+            var predictedTotal = fuelTank.CurrentFuelVolume + amountToAdd;
             if (predictedTotal > fuelTank.MaxVolume)
             {
                 throw new PreventOverfillException(fuelTank);

@@ -10,12 +10,12 @@ namespace Domain
         private bool fuelValveOpen = false;
         private bool isEngineStarted = false;
 
-        public void OpenFuelValves()
+        public virtual void OpenFuelValves()
         {
             this.fuelValveOpen = true;
         }
 
-        public void IgniteEngine(IReadOnlyList<FuelTank> fuelTanks)
+        public virtual  void IgniteEngine(IReadOnlyList<FuelTank> fuelTanks)
         {
             CheckFuelValveOpen();
             CheckFuelTankCount(fuelTanks);
@@ -24,7 +24,7 @@ namespace Domain
             this.isEngineStarted = true;
         }
 
-        private void CheckFuelValveOpen()
+        private  void  CheckFuelValveOpen()
         {
             if (!this.fuelValveOpen)
             {
@@ -36,7 +36,7 @@ namespace Domain
         {
             CheckEngineStarted();
 
-            var fuelMix = fuelTanks.Select(x => x.SupplyFuel(enginePower)).ToList();
+            var fuelMix = fuelTanks.Select(x => x.RemoveFuel(enginePower)).ToList();
             CheckFuelRatio(fuelMix);
             CheckEnoughFuel(enginePower, fuelMix);
             rocket.CurrentAltitude += enginePower;

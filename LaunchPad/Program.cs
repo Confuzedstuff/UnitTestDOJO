@@ -23,14 +23,16 @@ namespace LaunchPad
         private void Run()
         {
             var rocket = this.rocketAssemblyService.CreateRocket();
-            
-            var methaneTank = this.rocketAssemblyService.CreateFuelTank(FuelType.Methane, maxVolume:5);
-            var oxygenTank = this.rocketAssemblyService.CreateFuelTank(FuelType.Oxygen, maxVolume:5);
 
+            var engine = this.rocketAssemblyService.CreateEngine();
+            var methaneTank = this.rocketAssemblyService.CreateFuelTank(FuelType.Methane, maxVolume: 5);
+            var oxygenTank = this.rocketAssemblyService.CreateFuelTank(FuelType.Oxygen, maxVolume: 5);
+
+            this.rocketAssemblyService.AddEngine(rocket, engine);
             this.rocketAssemblyService.AddFuelTank(rocket, methaneTank);
             this.rocketAssemblyService.AddFuelTank(rocket, oxygenTank);
 
-            refuelerService.AddFuel(methaneTank,FuelType.Methane, 15);
+            refuelerService.AddFuel(methaneTank, FuelType.Methane, 5);
             refuelerService.AddFuel(oxygenTank, FuelType.Oxygen, 5);
 
             try
@@ -48,7 +50,7 @@ namespace LaunchPad
                 Console.WriteLine("Something went wrong, the rocket is destroyed");
                 throw;
             }
-            
+
 
             Console.WriteLine("Success! Rocket launched successfully!");
         }
@@ -74,6 +76,4 @@ namespace LaunchPad
 
         #endregion
     }
-
-
 }

@@ -27,7 +27,6 @@ namespace TestProject
             rocket.Engine = engineMock.Object;
             rocket.StartEngine();
             engineMock.Verify(x=>x.OpenFuelValves(), Times.Once);
-            engineMock.Verify(x=>x.IgniteEngine(It.IsAny<FuelTank[]>()), Times.Once);
         }
 
         private Rocket RocketStub()

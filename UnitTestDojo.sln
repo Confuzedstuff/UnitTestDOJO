@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaunchPad", "LaunchPad\LaunchPad.csproj", "{2C326809-307F-497C-998D-6AC498C2F848}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitDOJO", "NUnitDOJO\NUnitDOJO.csproj", "{06BEB86B-EAF2-488A-B080-1643ED408340}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{2C326809-307F-497C-998D-6AC498C2F848}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C326809-307F-497C-998D-6AC498C2F848}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C326809-307F-497C-998D-6AC498C2F848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06BEB86B-EAF2-488A-B080-1643ED408340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06BEB86B-EAF2-488A-B080-1643ED408340}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06BEB86B-EAF2-488A-B080-1643ED408340}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06BEB86B-EAF2-488A-B080-1643ED408340}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
